@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Dashboard</h2>
+    <div>
+        <span>{{ user_name }}</span>
+        <a href="/add-application">Add Application</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="content">
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Deadline</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for app in applications %}
+        <tr>
+            <td>{{ app.company_name }}</td>
+            <td>{{ app.status }}</td>
+            <td>{{ app.deadline }}</td>
+            <td>
+                <a href="/edit-application/{{ app.id }}">Edit</a> |
+                <a href="/delete-application/{{ app.id }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Placement Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Placement Tracker</h2>
+    <div>
+        {% if user_name %}
+            <span>Hello, {{ user_name }}</span>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
+    </div>
+</div>
+
+<div class="content">
+    <h1>Placement & Internship Tracking System</h1>
+    <p>Track your applications, deadlines and progress.</p>
+</div>
+
+</body>
+</html>

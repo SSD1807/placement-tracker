@@ -1,0 +1,98 @@
+/* ---------- Global ---------- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+    background-color: #1f2937;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Main Content ---------- */
+.content {
+    padding: 40px;
+}
+
+/* ---------- Card ---------- */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: 60px auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* ---------- Forms ---------- */
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* ---------- Tables ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #e5e7eb;
+}
+
+tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+/* ---------- Links ---------- */
+.link {
+    text-align: center;
+    margin-top: 10px;
+}

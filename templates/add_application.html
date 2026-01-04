@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Application</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Placement Tracker</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Add Application</h2>
+
+    <form method="POST">
+        <label>Company Name</label>
+        <input type="text" name="company_name" required>
+
+        <label>Status</label>
+        <select name="status">
+            <option>Applied</option>
+            <option>Interview</option>
+            <option>Rejected</option>
+        </select>
+
+        <label>Deadline</label>
+        <input type="date" name="deadline">
+
+        <button type="submit">Add Application</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Application</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Edit Application</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="card">
+    <form method="POST">
+        <label>Status</label>
+        <select name="status">
+            <option {% if app.status == "Applied" %}selected{% endif %}>Applied</option>
+            <option {% if app.status == "Interview" %}selected{% endif %}>Interview</option>
+            <option {% if app.status == "Rejected" %}selected{% endif %}>Rejected</option>
+        </select>
+
+        <label>Deadline</label>
+        <input type="date" name="deadline" value="{{ app.deadline }}">
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>
