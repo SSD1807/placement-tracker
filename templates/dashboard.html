@@ -4,6 +4,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
+<div class="dashboard-container"></div>
 <body>
 
 <div class="navbar">
@@ -27,8 +28,20 @@
         {% for app in applications %}
         <tr>
             <td>{{ app.company_name }}</td>
-            <td>{{ app.status }}</td>
-            <td>{{ app.deadline }}</td>
+            <td>
+    <span class="status-badge {{ app['status'] | lower }}">
+        {{ app['status'] }}
+    </span>
+</td>
+
+            <td class="
+{% if app['deadline'] %}
+    {% set days = (app['deadline'] | string) %}
+{% endif %}
+deadline-cell">
+    {{ app['deadline'] }}
+</td>
+
             <td>
                 <a href="/edit-application/{{ app.id }}">Edit</a> |
                 <a href="/delete-application/{{ app.id }}">Delete</a>
@@ -39,4 +52,5 @@
 </div>
 
 </body>
+</div>
 </html>
