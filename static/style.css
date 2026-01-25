@@ -1,4 +1,6 @@
-/* ---------- Global ---------- */
+/* =========================================================
+   GLOBAL
+========================================================= */
 body {
     font-family: "Segoe UI", sans-serif;
     background-color: #f5f7fb;
@@ -6,7 +8,9 @@ body {
     padding: 0;
 }
 
-/* ---------- Navbar ---------- */
+/* =========================================================
+   NAVBAR
+========================================================= */
 .navbar {
     background-color: #1f2937;
     color: white;
@@ -31,75 +35,9 @@ body {
     text-decoration: underline;
 }
 
-/* ---------- Main Content ---------- */
-.content {
-    padding: 40px;
-}
-
-/* ---------- Card ---------- */
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    max-width: 450px;
-    margin: 60px auto;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* ---------- Forms ---------- */
-input, select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-button {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #1d4ed8;
-}
-
-/* ---------- Tables ---------- */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #e5e7eb;
-}
-
-tr:nth-child(even) {
-    background-color: #f9fafb;
-}
-
-/* ---------- Links ---------- */
-.link {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* ================= ADD APPLICATION PAGE ================= */
-
-/* ---------- PAGE LAYOUT ---------- */
+/* =========================================================
+   PAGE LAYOUT / CARDS
+========================================================= */
 .page-container {
     display: flex;
     justify-content: center;
@@ -107,7 +45,6 @@ tr:nth-child(even) {
     min-height: 100vh;
 }
 
-/* ---------- CARD ---------- */
 .card {
     background: #ffffff;
     padding: 30px;
@@ -121,7 +58,9 @@ tr:nth-child(even) {
     text-align: center;
 }
 
-/* ---------- FORM ---------- */
+/* =========================================================
+   FORMS
+========================================================= */
 .form-group {
     margin-bottom: 15px;
 }
@@ -133,7 +72,9 @@ label {
     font-size: 14px;
 }
 
-input, select {
+input,
+select,
+button {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -141,30 +82,33 @@ input, select {
     font-size: 14px;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     outline: none;
     border-color: #4f46e5;
 }
 
-/* ---------- BUTTON ---------- */
+/* =========================================================
+   BUTTONS & LINKS
+========================================================= */
+button,
 .btn-primary {
-    width: 100%;
-    padding: 12px;
     background-color: #4f46e5;
-    color: #fff;
+    color: white;
     border: none;
-    border-radius: 6px;
-    font-size: 15px;
     cursor: pointer;
-    margin-top: 10px;
+    font-size: 15px;
+    padding: 12px;
+    border-radius: 6px;
 }
 
+button:hover,
 .btn-primary:hover {
     background-color: #4338ca;
 }
 
-/* ---------- LINK ---------- */
-.back-link {
+.back-link,
+.link {
     display: block;
     margin-top: 15px;
     text-align: center;
@@ -173,67 +117,48 @@ input:focus, select:focus {
     font-size: 14px;
 }
 
-.back-link:hover {
+.back-link:hover,
+.link:hover {
     text-decoration: underline;
 }
 
-/* ---------- STATUS BADGES ---------- */
-.status-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
-}
-
-.status-badge.applied {
-    background-color: #3b82f6; /* blue */
-}
-
-.status-badge.interview {
-    background-color: #22c55e; /* green */
-}
-
-.status-badge.rejected {
-    background-color: #ef4444; /* red */
-}
-
-/* ---------- DEADLINES ---------- */
-.deadline-cell {
-    font-weight: 600;
-}
-
-.deadline-soon {
-    color: #f97316; /* orange */
-}
-
-.deadline-urgent {
-    color: #dc2626; /* red */
-}
-
-/* ---------- DASHBOARD ---------- */
+/* =========================================================
+   DASHBOARD
+========================================================= */
 .dashboard-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
 }
 
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   TABLES
+========================================================= */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: #ffffff;
     border-radius: 10px;
     overflow: hidden;
 }
 
-th, td {
+th,
+td {
     padding: 14px;
     text-align: left;
+    font-size: 14px;
 }
 
 th {
     background-color: #f1f5f9;
-    font-size: 14px;
+    font-weight: 600;
 }
 
 tr:not(:last-child) {
@@ -244,16 +169,48 @@ tr:hover {
     background-color: #f9fafb;
 }
 
-/* ---------- FIX DASHBOARD TOP SPACE ---------- */
-body {
-    margin: 0;
-    padding: 0;
+/* =========================================================
+   DEADLINE HIGHLIGHTING
+========================================================= */
+tr.urgent {
+    background-color: #fff3cd;
 }
 
-.dashboard-container {
-    margin-top: 0;
+tr.expired {
+    background-color: #f8d7da;
 }
 
-h1 {
-    margin-top: 0;
+.expired-text {
+    color: #b91c1c;
+    font-weight: bold;
+}
+
+/* =========================================================
+   BADGES (PLACEMENT / INTERNSHIP)
+========================================================= */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge-placement {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+.badge-internship {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* =========================================================
+   EMPTY STATES
+========================================================= */
+.empty-text {
+    margin-top: 20px;
+    color: #6b7280;
+    font-size: 14px;
 }

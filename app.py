@@ -47,11 +47,10 @@ def create_tables():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
             company_id INTEGER,
-            status TEXT,
+            application_type TEXT,
+            stage TEXT,
             deadline TEXT,
-            resume_file TEXT,
-            FOREIGN KEY(user_id) REFERENCES users(id),
-            FOREIGN KEY(company_id) REFERENCES companies(id)
+            resume_file TEXT
         )
     """)
 
@@ -122,6 +121,8 @@ def logout():
 
 
 # ---------------- DASHBOARD ----------------
+from datetime import datetime
+
 @app.route("/dashboard")
 def dashboard():
     if "user_id" not in session:
@@ -131,18 +132,30 @@ def dashboard():
     applications = conn.execute("""
         SELECT applications.id,
                companies.company_name,
-               applications.status,
-               applications.deadline,
-               applications.resume_file
+               applications.application_type,
+               applications.stage,
+               applications.deadline
         FROM applications
         JOIN companies ON applications.company_id = companies.id
         WHERE applications.user_id = ?
     """, (session["user_id"],)).fetchall()
     conn.close()
 
+    today = datetime.today().date()
+
+    processed_apps = []
+    for app_row in applications:
+        deadline_date = datetime.strptime(app_row["deadline"], "%Y-%m-%d").date()
+        days_left = (deadline_date - today).days
+
+        processed_apps.append({
+            **dict(app_row),
+            "days_left": days_left
+        })
+
     return render_template(
         "dashboard.html",
-        applications=applications,
+        applications=processed_apps,
         user_name=session["user_name"]
     )
 
@@ -155,23 +168,19 @@ def add_application():
 
     if request.method == "POST":
         company_name = request.form["company_name"]
-        status = request.form["status"]
+        application_type = request.form["application_type"]
+        stage = request.form["stage"]
         deadline = request.form["deadline"]
 
-        # -------- RESUME UPLOAD --------
         resume = request.files.get("resume")
         resume_filename = None
 
         if resume and resume.filename != "":
             resume_filename = secure_filename(resume.filename)
-            resume.save(
-                os.path.join(app.config["UPLOAD_FOLDER"], resume_filename)
-            )
+            resume.save(os.path.join(app.config["UPLOAD_FOLDER"], resume_filename))
 
-        # -------- DATABASE --------
         conn = get_db_connection()
 
-        # Insert company if not exists
         conn.execute(
             "INSERT OR IGNORE INTO companies (company_name) VALUES (?)",
             (company_name,)
@@ -182,15 +191,15 @@ def add_application():
             (company_name,)
         ).fetchone()["id"]
 
-        # Insert application
         conn.execute("""
             INSERT INTO applications
-            (user_id, company_id, status, deadline, resume_file)
-            VALUES (?, ?, ?, ?, ?)
+            (user_id, company_id, application_type, stage, deadline, resume_file)
+            VALUES (?, ?, ?, ?, ?, ?)
         """, (
             session["user_id"],
             company_id,
-            status,
+            application_type,
+            stage,
             deadline,
             resume_filename
         ))

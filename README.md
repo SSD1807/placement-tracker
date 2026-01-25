@@ -162,7 +162,7 @@ This project is for educational and learning purposes.
 - ✔ Core backend completed
 - ✔ Authentication implemented
 - ✔ CRUD operations functional
-- ✔ Ready for deployment (can be extended further)
+- ✔ Deployement done successfully 
 
 ---
 
