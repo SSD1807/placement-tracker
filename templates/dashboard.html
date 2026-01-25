@@ -1,66 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-<div class="dashboard-container">
-
-    <div class="dashboard-header">
-        <h2>Welcome, {{ user_name }}</h2>
-        <a href="/add-application" class="btn-primary">+ Add Application</a>
+<div class="navbar">
+    <h2>Placement Tracker</h2>
+    <div>
+        <a href="{{ url_for('add_application') }}">+ Add Application</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </div>
+</div>
 
-    {% if applications|length == 0 %}
-        <p class="empty-text">No applications added yet.</p>
+<div class="dashboard-container">
+    <h1>Welcome, {{ user_name }}</h1>
+
+    {% if applications %}
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Type</th>
+                <th>Stage</th>
+                <th>Deadline</th>
+                <th>Days Left</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in applications %}
+            <tr class="{% if app.days_left <= 3 %}urgent{% elif app.days_left <= 7 %}soon{% endif %}">
+                <td>{{ app.company_name }}</td>
+
+                <td>
+                    <span class="badge {{ app.application_type|lower }}">
+                        {{ app.application_type }}
+                    </span>
+                </td>
+
+                <td>{{ app.stage }}</td>
+
+                <td>{{ app.deadline }}</td>
+
+                <td>{{ app.days_left }} days</td>
+
+                <td>
+                    <a class="btn-edit" href="{{ url_for('edit_application', app_id=app.id) }}">Edit</a>
+                    <a class="btn-delete"
+                       href="{{ url_for('delete_application', app_id=app.id) }}"
+                       onclick="return confirm('Delete this application?')">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     {% else %}
-        <table class="dashboard-table">
-            <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>Type</th>
-                    <th>Stage</th>
-                    <th>Deadline</th>
-                    <th>Days Left</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for app in applications %}
-                <tr class="
-                    {% if app.days_left < 0 %} expired
-                    {% elif app.days_left <= 7 %} urgent
-                    {% endif %}
-                ">
-                    <td>{{ app.company_name }}</td>
-
-                    <td>
-                        {% if app.application_type == "Placement" %}
-                            <span class="badge badge-placement">Placement</span>
-                        {% else %}
-                            <span class="badge badge-internship">Internship</span>
-                        {% endif %}
-                    </td>
-
-                    <td>{{ app.stage }}</td>
-
-                    <td>{{ app.deadline }}</td>
-
-                    <td>
-                        {% if app.days_left < 0 %}
-                            <span class="expired-text">Expired</span>
-                        {% else %}
-                            {{ app.days_left }} days
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <p>No applications added yet.</p>
     {% endif %}
-
 </div>
 
 </body>
