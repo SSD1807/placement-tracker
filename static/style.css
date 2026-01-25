@@ -1,11 +1,17 @@
 /* =========================================================
-   GLOBAL
+   GLOBAL RESET & BASE
 ========================================================= */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: "Segoe UI", sans-serif;
     background-color: #f5f7fb;
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 /* =========================================================
@@ -36,38 +42,39 @@ body {
 }
 
 /* =========================================================
-   PAGE LAYOUT / CARDS
+   PAGE CONTAINERS
 ========================================================= */
-.page-container {
+.page-container,
+.auth-page {
+    min-height: calc(100vh - 70px);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    padding: 20px;
 }
 
+/* =========================================================
+   CARD
+========================================================= */
 .card {
     background: #ffffff;
     padding: 30px;
-    width: 400px;
+    width: 100%;
+    max-width: 420px;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    margin: 20px;
 }
 
 .card h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
 }
 
 /* =========================================================
    FORMS
 ========================================================= */
-.form-group {
-    margin-bottom: 15px;
-}
-
 label {
-    display: block;
-    margin-bottom: 6px;
     font-weight: 600;
     font-size: 14px;
 }
@@ -76,7 +83,7 @@ input,
 select,
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 14px;
@@ -98,7 +105,6 @@ button,
     border: none;
     cursor: pointer;
     font-size: 15px;
-    padding: 12px;
     border-radius: 6px;
 }
 
@@ -107,9 +113,8 @@ button:hover,
     background-color: #4338ca;
 }
 
-.back-link,
-.link {
-    display: block;
+.link,
+.back-link {
     margin-top: 15px;
     text-align: center;
     color: #4f46e5;
@@ -117,9 +122,33 @@ button:hover,
     font-size: 14px;
 }
 
-.back-link:hover,
-.link:hover {
+.link:hover,
+.back-link:hover {
     text-decoration: underline;
+}
+
+/* =========================================================
+   AUTH CARD (LOGIN / REGISTER)
+========================================================= */
+.auth-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-card form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-card button {
+    margin-top: 10px;
+}
+
+.auth-card h2 {
+    text-align: center;
 }
 
 /* =========================================================
@@ -172,8 +201,12 @@ tr:hover {
 /* =========================================================
    DEADLINE HIGHLIGHTING
 ========================================================= */
+tr.soon {
+    background-color: #fff7ed;
+}
+
 tr.urgent {
-    background-color: #fff3cd;
+    background-color: #fee2e2;
 }
 
 tr.expired {
@@ -186,7 +219,7 @@ tr.expired {
 }
 
 /* =========================================================
-   BADGES (PLACEMENT / INTERNSHIP)
+   BADGES
 ========================================================= */
 .badge {
     padding: 4px 10px;
@@ -207,15 +240,8 @@ tr.expired {
 }
 
 /* =========================================================
-   EMPTY STATES
+   ACTION BUTTONS
 ========================================================= */
-.empty-text {
-    margin-top: 20px;
-    color: #6b7280;
-    font-size: 14px;
-}
-
-/* ---------- ACTION BUTTONS ---------- */
 .btn-edit {
     background-color: #2563eb;
     color: white;
@@ -243,22 +269,42 @@ tr.expired {
     background-color: #b91c1c;
 }
 
-/* ---------- ROW HIGHLIGHT ---------- */
-tr.soon {
-    background-color: #fff7ed;
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+.empty-text {
+    margin-top: 20px;
+    color: #6b7280;
+    font-size: 14px;
 }
 
-tr.urgent {
-    background-color: #fee2e2;
-}
-/* ---------- AUTH PAGE CENTERING ---------- */
-.auth-page {
-    min-height: calc(100vh - 70px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+
+    .dashboard-container {
+        padding: 10px;
+    }
 }
 
-.auth-card {
-    width: 420px;
+@media (max-width: 600px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .add-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
